@@ -1,0 +1,1693 @@
+/* ═══════════════════════════════════════════════════════
+   FITNESS TRACKER — iOS Native Dark UI
+   Authentic Apple design: SF Pro, pure black, blue accent
+   ═══════════════════════════════════════════════════════ */
+
+/* ── CSS Variables ────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-base: #000000;
+  --bg-primary: #000000;
+  --bg-elevated: rgba(28, 28, 30, 0.72);
+  --bg-secondary: #1c1c1e;
+  --bg-tertiary: #2c2c2e;
+  --bg-grouped: rgba(44, 44, 46, 0.55);
+  --bg-blur: rgba(18, 18, 20, 0.78);
+  --bg-blur-heavy: rgba(10, 10, 12, 0.88);
+  --bg-glass: rgba(255, 255, 255, 0.06);
+  --bg-glass-hover: rgba(255, 255, 255, 0.09);
+  --bg-glass-border: rgba(255, 255, 255, 0.08);
+  --bg-input: rgba(118, 118, 128, 0.24);
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(235, 235, 245, 0.6);
+  --text-tertiary: rgba(235, 235, 245, 0.3);
+  --text-quaternary: rgba(235, 235, 245, 0.18);
+
+  /* iOS System Colors */
+  --ios-blue: #0a84ff;
+  --ios-green: #30d158;
+  --ios-orange: #ff9f0a;
+  --ios-red: #ff453a;
+  --ios-purple: #bf5af2;
+  --ios-pink: #ff375f;
+  --ios-yellow: #ffd60a;
+  --ios-teal: #64d2ff;
+
+  /* Primary accent — single color */
+  --accent: #0a84ff;
+  --accent-soft: rgba(10, 132, 255, 0.12);
+
+  /* Radius — iOS standard */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-card: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows — subtle, no glows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
+
+  /* Layout */
+  --nav-height: 83px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Motion — iOS spring curves */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-ios: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.35s;
+  --duration-slow: 0.5s;
+
+  /* Blur */
+  --blur-regular: blur(20px) saturate(180%);
+  --blur-thick: blur(40px) saturate(200%);
+}
+
+/* ── Reset ────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  color-scheme: dark;
+}
+
+body {
+  font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.47;
+  letter-spacing: -0.022em;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* ── App Layout ───────────────────────────────────────── */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ── Page Container ───────────────────────────────────── */
+.page-container {
+  flex: 1;
+  padding: calc(var(--safe-top) + 20px) 24px calc(var(--nav-height) + var(--safe-bottom) + 28px);
+  max-width: 430px;
+  width: 100%;
+  margin: 0 auto;
+  animation: pageIn 0.35s var(--ease-ios);
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── iOS Large Title Header ───────────────────────────── */
+.page-header {
+  margin-bottom: 32px;
+  padding-top: 12px;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.page-header h1 .gradient-text {
+  color: var(--text-primary);
+}
+
+.page-header .subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-weight: 400;
+}
+
+/* ── Motivational Banner ──────────────────────────────── */
+.motivation-banner {
+  padding: 20px 22px;
+  border-radius: var(--radius-card);
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  margin-bottom: 24px;
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+}
+
+.motivation-banner .motto {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.motivation-banner .motto-sub {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ── Date Navigator ───────────────────────────────────── */
+.date-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding: 12px 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+}
+
+.date-nav button {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 300;
+  transition: all var(--duration-fast) var(--ease-ios);
+}
+
+.date-nav button:active {
+  transform: scale(0.88);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.date-nav .date-display {
+  font-weight: 600;
+  font-size: 0.95rem;
+  min-width: 170px;
+  text-align: center;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.date-nav .date-display .day-name {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── iOS Grouped Section ──────────────────────────────── */
+.ios-section {
+  margin-bottom: 28px;
+}
+
+.section-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  padding-left: 4px;
+}
+
+/* ── Glass Card (iOS) ─────────────────────────────────── */
+.ios-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+  overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-ios);
+}
+
+.ios-card:active {
+  transform: scale(0.98);
+}
+
+.ios-card-inner {
+  padding: 18px;
+}
+
+/* ── iOS List / Rows ──────────────────────────────────── */
+.ios-list {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+  overflow: hidden;
+}
+
+.ios-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  transition: background var(--duration-fast);
+  position: relative;
+}
+
+.ios-row:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 58px;
+  right: 0;
+  height: 0.33px;
+  background: var(--bg-glass-border);
+}
+
+.ios-row:active {
+  background: var(--bg-glass-hover);
+}
+
+.ios-row .row-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.ios-row .row-icon.green {
+  background: rgba(48, 209, 88, 0.12);
+  color: var(--ios-green);
+}
+
+.ios-row .row-icon.blue {
+  background: rgba(10, 132, 255, 0.12);
+  color: var(--ios-blue);
+}
+
+.ios-row .row-icon.purple {
+  background: rgba(191, 90, 242, 0.12);
+  color: var(--ios-purple);
+}
+
+.ios-row .row-icon.orange {
+  background: rgba(255, 159, 10, 0.12);
+  color: var(--ios-orange);
+}
+
+.ios-row .row-icon.pink {
+  background: rgba(255, 55, 95, 0.12);
+  color: var(--ios-pink);
+}
+
+.ios-row .row-icon.teal {
+  background: rgba(100, 210, 255, 0.12);
+  color: var(--ios-teal);
+}
+
+.ios-row .row-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ios-row .row-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.ios-row .row-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.ios-row .row-accessory {
+  color: var(--text-tertiary);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.ios-row .row-value {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.ios-row .delete-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  transition: all var(--duration-fast);
+  flex-shrink: 0;
+}
+
+.ios-row .delete-btn:active {
+  background: rgba(255, 69, 58, 0.15);
+  color: var(--ios-red);
+  transform: scale(0.85);
+}
+
+/* ── Workout Item ─────────────────────────────────────── */
+.workout-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+  margin-bottom: 14px;
+  overflow: hidden;
+  animation: cardSlide 0.3s var(--ease-ios) both;
+}
+
+@keyframes cardSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.workout-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px 10px;
+}
+
+.workout-card-header .w-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.workout-card-header .w-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.workout-card-header .w-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.workout-card-header .w-meta {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.workout-card-header .delete-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  transition: all var(--duration-fast);
+  flex-shrink: 0;
+}
+
+.workout-card-header .delete-btn:active {
+  background: rgba(255, 69, 58, 0.15);
+  color: var(--ios-red);
+}
+
+/* Series checkboxes row */
+.workout-sets-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 18px 14px 72px;
+}
+
+.set-bubble {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  transition: all var(--duration-fast) var(--ease-spring);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.set-bubble.done {
+  background: var(--ios-green);
+  border-color: var(--ios-green);
+  color: white;
+  transform: scale(1.05);
+}
+
+.set-bubble:active {
+  transform: scale(0.85);
+}
+
+.workout-weight-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px 14px 72px;
+}
+
+.workout-weight-row label {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.workout-weight-row input {
+  width: 60px;
+  height: 30px;
+  padding: 0 8px;
+  background: var(--bg-input);
+  border-radius: var(--radius-xs);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.workout-weight-row input:focus {
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.workout-weight-row .unit {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* ── Calorie Summary Ring ─────────────────────────────── */
+.calorie-summary {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 22px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+}
+
+.calorie-ring-wrap {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  flex-shrink: 0;
+}
+
+.calorie-ring-wrap svg {
+  width: 94px;
+  height: 94px;
+  transform: rotate(-90deg);
+}
+
+.calorie-ring-wrap .ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 7;
+}
+
+.calorie-ring-wrap .ring-fill {
+  fill: none;
+  stroke: var(--ios-blue);
+  stroke-width: 7;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.7s var(--ease-ios);
+}
+
+.calorie-ring-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.calorie-ring-center .cal-number {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.calorie-ring-center .cal-label {
+  font-size: 0.58rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.calorie-meta {
+  flex: 1;
+}
+
+.calorie-meta .meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.calorie-meta .meta-item:not(:last-child) {
+  border-bottom: 0.33px solid var(--bg-glass-border);
+}
+
+.calorie-meta .meta-label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.calorie-meta .meta-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.calorie-meta .meta-value.over {
+  color: var(--ios-red);
+}
+
+.calorie-meta .meta-value.under {
+  color: var(--ios-green);
+}
+
+/* ── Stats Grid ───────────────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+  transition: transform var(--duration-fast) var(--ease-ios);
+}
+
+.stat-card:active {
+  transform: scale(0.97);
+}
+
+.stat-card .stat-icon {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+}
+
+.stat-card .stat-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.stat-card .stat-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* ── Weekly Chart ─────────────────────────────────────── */
+.week-chart {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  padding: 22px;
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+  margin-bottom: 28px;
+}
+
+.week-chart .chart-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 130px;
+  gap: 8px;
+}
+
+.chart-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  max-width: 28px;
+  border-radius: 6px 6px 3px 3px;
+  background: var(--ios-blue);
+  min-height: 3px;
+  transition: height 0.7s var(--ease-ios);
+}
+
+.chart-bar.today {
+  background: var(--ios-blue);
+  opacity: 1;
+}
+
+.chart-bar.empty {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.chart-bar-label {
+  font-size: 0.65rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.chart-bar-label.today {
+  color: var(--ios-blue);
+  font-weight: 700;
+}
+
+.chart-bar-value {
+  font-size: 0.58rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* ── FAB (Floating Action Button) ─────────────────────── */
+.fab {
+  position: fixed;
+  bottom: calc(var(--nav-height) + var(--safe-bottom) + 20px);
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: var(--ios-blue);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  z-index: 50;
+  transition: all var(--duration-normal) var(--ease-spring);
+  border: none;
+  line-height: 1;
+}
+
+.fab:active {
+  transform: scale(0.85) rotate(90deg);
+}
+
+/* ── Bottom Navigation (iOS Tab Bar) ──────────────────── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  padding-bottom: var(--safe-bottom);
+  background: var(--bg-blur-heavy);
+  backdrop-filter: var(--blur-thick);
+  -webkit-backdrop-filter: var(--blur-thick);
+  border-top: 0.33px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 90;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 0 4px;
+  color: var(--text-tertiary);
+  transition: color var(--duration-fast) var(--ease-ios);
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-item.active {
+  color: var(--ios-blue);
+}
+
+.nav-item .nav-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item .nav-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-item.active .nav-icon {
+  transform: scale(1.05);
+}
+
+.nav-item .nav-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ── Modal / Bottom Sheet ─────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.2s var(--ease-ios);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 430px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 6px 24px calc(var(--safe-bottom) + 28px);
+  animation: sheetUp 0.35s var(--ease-spring);
+}
+
+@keyframes sheetUp {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-handle {
+  width: 36px;
+  height: 5px;
+  background: rgba(235, 235, 245, 0.18);
+  border-radius: var(--radius-full);
+  margin: 8px auto 22px;
+}
+
+.modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+
+/* ── Form Elements ────────────────────────────────────── */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-group input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  background: var(--bg-input);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all var(--duration-fast);
+}
+
+.form-group input:focus {
+  border-color: var(--ios-blue);
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.12);
+}
+
+.form-group input::placeholder {
+  color: var(--text-quaternary);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn {
+  height: 50px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--duration-fast) var(--ease-ios);
+  width: 100%;
+  letter-spacing: -0.01em;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--ios-blue);
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  border: 1px solid var(--bg-glass-border);
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.btn-group .btn {
+  flex: 1;
+}
+
+/* ── Routine Cards ────────────────────────────────────── */
+.routine-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.routine-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+  transition: all var(--duration-fast) var(--ease-ios);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  animation: cardSlide 0.3s var(--ease-ios) both;
+}
+
+.routine-card:active {
+  transform: scale(0.97);
+  background: var(--bg-glass-hover);
+}
+
+.routine-card.active-routine {
+  border-color: var(--ios-blue);
+}
+
+.routine-card.active-routine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ios-blue);
+}
+
+.routine-card .routine-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.routine-card .routine-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.routine-card .routine-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.routine-card .routine-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.routine-card .routine-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.routine-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.routine-tag.highlight {
+  background: var(--accent-soft);
+  color: var(--ios-blue);
+}
+
+/* ── Routine Detail ───────────────────────────────────── */
+.routine-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.back-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  transition: all var(--duration-fast);
+}
+
+.back-btn:active {
+  transform: scale(0.88);
+}
+
+/* Day tabs */
+.day-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 22px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+.day-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.day-tab {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  transition: all var(--duration-fast) var(--ease-ios);
+  border: 1px solid transparent;
+  flex-shrink: 0;
+}
+
+.day-tab.active {
+  background: var(--ios-blue);
+  color: white;
+  border-color: transparent;
+}
+
+.day-tab:active {
+  transform: scale(0.94);
+}
+
+/* ── Today's Routine Banner ───────────────────────────── */
+.today-routine-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  margin-bottom: 22px;
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+}
+
+.today-routine-banner .trb-icon {
+  font-size: 1.5rem;
+}
+
+.today-routine-banner .trb-info {
+  flex: 1;
+}
+
+.today-routine-banner .trb-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.today-routine-banner .trb-name {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.today-routine-banner .trb-exercises {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 1px;
+}
+
+/* ── Empty State ──────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 56px 24px;
+  color: var(--text-tertiary);
+}
+
+.empty-state .empty-icon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+  opacity: 0.35;
+}
+
+.empty-state .empty-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+
+.empty-state .empty-hint {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+}
+
+/* ── Goal Setting ─────────────────────────────────────── */
+.goal-setting {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+}
+
+.goal-setting label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.goal-setting input {
+  width: 70px;
+  height: 34px;
+  padding: 0 8px;
+  background: var(--bg-input);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.goal-setting input:focus {
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.goal-setting .unit {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+/* ── Card helper ──────────────────────────────────────── */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+}
+
+.card-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+/* ── Calorie Item ─────────────────────────────────────── */
+.calorie-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-card);
+  margin-bottom: 12px;
+  backdrop-filter: var(--blur-regular);
+  -webkit-backdrop-filter: var(--blur-regular);
+  animation: cardSlide 0.3s var(--ease-ios) both;
+}
+
+.calorie-item .food-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 159, 10, 0.12);
+  color: var(--ios-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.calorie-item .food-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.calorie-item .food-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calorie-item .food-cal {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.calorie-item .delete-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  transition: all var(--duration-fast);
+  flex-shrink: 0;
+}
+
+.calorie-item .delete-btn:active {
+  background: rgba(255, 69, 58, 0.15);
+  color: var(--ios-red);
+}
+
+/* ── Animations ───────────────────────────────────────── */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-count {
+  animation: countUp 0.5s var(--ease-ios);
+}
+
+/* ── Info Button (exercise detail link) ───────────────── */
+.info-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ios-blue);
+  background: rgba(10, 132, 255, 0.12);
+  transition: all var(--duration-fast) var(--ease-ios);
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.info-btn:active {
+  transform: scale(0.85);
+  background: rgba(10, 132, 255, 0.25);
+}
+
+/* ── Per-Set Detail Grid ──────────────────────────────── */
+.set-details-grid {
+  margin-top: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--bg-glass-border);
+}
+
+.set-details-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 36px;
+  gap: 6px;
+  padding: 6px 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--bg-glass-border);
+  margin-bottom: 6px;
+}
+
+.set-details-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 36px;
+  gap: 6px;
+  padding: 6px 4px;
+  align-items: center;
+  border-radius: var(--radius-xs);
+  transition: background var(--duration-fast) var(--ease-ios);
+}
+
+.set-details-row.set-done {
+  background: rgba(52, 199, 89, 0.08);
+}
+
+.set-number {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.set-done .set-number {
+  background: rgba(52, 199, 89, 0.12);
+  color: var(--ios-green);
+}
+
+.set-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-xs);
+  padding: 7px 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: border-color var(--duration-fast) var(--ease-ios);
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.set-input::-webkit-outer-spin-button,
+.set-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.set-input:focus {
+  border-color: var(--ios-blue);
+  outline: none;
+}
+
+.set-done .set-input {
+  opacity: 0.6;
+}
+
+.set-check {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: transparent;
+  transition: all var(--duration-fast) var(--ease-ios);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.set-check.checked {
+  background: var(--ios-green);
+  border-color: var(--ios-green);
+  color: white;
+}
+
+.set-check:active {
+  transform: scale(0.85);
+}
+
+/* ── Emoji Picker ─────────────────────────────────────── */
+.emoji-picker {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 60;
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  margin-top: 6px;
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.15s var(--ease-ios);
+  min-width: 200px;
+}
+
+.emoji-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+}
+
+.emoji-option {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  background: transparent;
+  transition: background var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.emoji-option:active,
+.emoji-option.selected {
+  background: var(--accent-soft);
+}
+
+/* ── Autocomplete ─────────────────────────────────────── */
+.autocomplete-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-sm);
+  margin-top: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.15s var(--ease-ios);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autocomplete-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  transition: background var(--duration-fast);
+  border: none;
+  cursor: pointer;
+}
+
+.autocomplete-item:not(:last-child) {
+  border-bottom: 0.33px solid var(--bg-glass-border);
+}
+
+.autocomplete-item:active {
+  background: var(--bg-glass-hover);
+}
+
+.autocomplete-item .ac-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.autocomplete-item .ac-muscle {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ── Protein Bar ──────────────────────────────────────── */
+.protein-bar-wrap {
+  margin-top: 14px;
+}
+
+.protein-bar-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.protein-bar-label .protein-value {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.protein-bar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.protein-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--ios-green);
+  transition: width 0.7s var(--ease-ios);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (min-width: 430px) {
+  .page-container {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
