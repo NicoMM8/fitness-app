@@ -1,16 +1,35 @@
-# React + Vite
+# Fitness App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web enfocada en el seguimiento del entrenamiento de fuerza y la nutrición. Es un proyecto *local-first*, por lo que todos los datos (rutinas, entrenamientos, calorías) se guardan directamente en el `localStorage` del navegador y no se hace uso de ninguna base de datos externa.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Registro y seguimiento de entrenamientos diarios (series, repeticiones y ejercicios).
+- Creación y gestión ágil de rutinas personalizadas.
+- Catálogo interno de ejercicios.
+- Módulo de nutrición para registrar la ingesta calórica y revisar planes de comida basados en diferentes objetivos.
+- Dashboard resumen con las estadísticas semanales y progreso.
+- Sistema para exportar/importar los datos guardados en formato JSON.
 
-## React Compiler
+## Stack técnico
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + react-router-dom
+- Vite
+- lucide-react para la iconografía
+- CSS nativo
 
-## Expanding the ESLint configuration
+## Setup local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para levantar el proyecto en tu máquina:
+
+1. Clona el repositorio.
+2. Abre la terminal en el directorio del proyecto e instala las dependencias:
+   ```bash
+   npm install
+   ```
+3. Ejecuta el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+La aplicación debería estar corriendo en `http://localhost:5173`.
