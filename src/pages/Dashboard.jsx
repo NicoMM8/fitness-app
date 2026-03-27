@@ -3,7 +3,8 @@ import { getWeeklyStats, getDateKey } from '../utils/storage';
 import { getActiveRoutine } from '../utils/routines';
 
 // Actually, I just need to add the import.
-import { Dumbbell, ClipboardList, Repeat, CalendarDays, Star, TrendingUp, Zap } from 'lucide-react';
+import { Dumbbell, ClipboardList, Repeat, CalendarDays, Star, TrendingUp, Zap, User } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import DataSettings from '../components/DataSettings';
 
 const SHORT_DAYS = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
@@ -15,6 +16,7 @@ const WEEK_MOTTOS = [
 ];
 
 export default function Dashboard() {
+    const navigate = useNavigate();
     const [weekOffset, setWeekOffset] = useState(0);
 
     const referenceDate = useMemo(() => {
@@ -43,6 +45,18 @@ export default function Dashboard() {
             <div className="page-header">
                 <h1>Resumen</h1>
                 <p className="subtitle">{motto}</p>
+            </div>
+
+            {/* Profile Link Banner */}
+            <div className="card" onClick={() => navigate('/profile')} style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', marginBottom: '22px', cursor: 'pointer', background: 'var(--accent-gradient-soft)', border: '1px solid rgba(255, 45, 85, 0.2)' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--accent-gradient)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+                    <User size={24} />
+                </div>
+                <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 800, fontSize: '1.1rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>Perfil de Nicolás</div>
+                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Ver dieta, macros y requerimientos</div>
+                </div>
+                <div style={{ color: 'var(--text-tertiary)' }}>›</div>
             </div>
 
             {/* Week Navigation */}

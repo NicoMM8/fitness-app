@@ -335,6 +335,23 @@ export const DEFAULT_MEAL_PLANS = [
             },
         ],
     },
+    {
+        id: 'nicolas',
+        name: 'Plan de Nicolás',
+        description: 'Plan de ~2300 kcal para recomposición (Ayuno 16/8)',
+        icon: '👑',
+        color: 'purple',
+        tags: ['2300 kcal', 'Recomposición', 'Alto en proteína', 'Ayuno 16/8'],
+        targetCalories: 2300,
+        days: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'].map(dayName => ({
+            name: dayName,
+            meals: [
+                { type: 'lunch', name: 'Tortilla de 3 huevos + 100g pavo, 1/2 aguacate y espinacas con AOVE', calories: 650, protein: 45, icon: '🥑' },
+                { type: 'afternoon_snack', name: '250g queso fresco 0%, 30g Whey, 60g avena, 1 plátano, 15g nueces', calories: 650, protein: 50, icon: '🥣' },
+                { type: 'dinner', name: '200g pollo/lomo, 250g patata/boniato, brócoli y 1 cda. de AOVE', calories: 1000, protein: 60, icon: '🍗' },
+            ],
+        })),
+    },
 ];
 
 const ACTIVE_MEAL_PLAN_KEY = 'fitness_active_meal_plan';

@@ -146,6 +146,12 @@ export default function Workouts() {
         setWorkouts(getWorkoutsByDate(dateKey));
     }
 
+    function updateWorkoutNote(workoutId, note) {
+        updateWorkout(dateKey, workoutId, { note });
+        // We do not call setWorkouts here on every keystroke to avoid losing focus if React remounts.
+        // We will call it onBlur
+    }
+
     function updateSetField(workoutId, setIndex, field, value) {
         const w = workouts.find(w => w.id === workoutId);
         if (!w) return;
@@ -323,6 +329,18 @@ export default function Workouts() {
                                             </button>
                                         </div>
                                     ))}
+                                    <div style={{ marginTop: '12px' }}>
+                                        <textarea
+                                            className="set-input"
+                                            style={{ width: '100%', minHeight: '60px', padding: '8px', borderRadius: '8px', textAlign: 'left', resize: 'vertical' }}
+                                            placeholder="Notas de este ejercicio (ej. subir 5kg, molestia en hombro...)"
+                                            defaultValue={w.note || ''}
+                                            onBlur={e => {
+                                                updateWorkoutNote(w.id, e.target.value);
+                                                setWorkouts(getWorkoutsByDate(dateKey)); // refresh the state after save
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             )}
                         </div>

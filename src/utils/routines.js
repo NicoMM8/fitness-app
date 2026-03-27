@@ -217,6 +217,78 @@ export const DEFAULT_ROUTINES = [
             },
         ],
     },
+    {
+        id: 'nicolas_routine',
+        name: 'Plan Entrenamiento Nicolás',
+        description: 'Torso, Pierna+Core, Full Body Correctivo',
+        icon: '👑',
+        color: 'purple',
+        tags: ['3 Días + Cardio', 'Recomposición', 'Postural'],
+        days: [
+            {
+                name: 'Lunes',
+                label: 'Descanso Activo',
+                exercises: [
+                    { name: 'Rutina postural completa (Bloques 1 y 2)', sets: 1, reps: 1 }
+                ]
+            },
+            {
+                name: 'Martes',
+                label: 'TORSO (Énfasis Tracciones)',
+                exercises: [
+                    { name: 'Calentamiento: Bloque 1 (Pectoral, Chin Tucks, Wall Angels)', sets: 1, reps: 1 },
+                    { name: 'Dominadas Asistidas (Saca pecho)', sets: 3, reps: 10 },
+                    { name: 'Remo en Máquina (Pecho apoyado)', sets: 3, reps: 12 },
+                    { name: 'Cruces en Polea (Alta a Baja)', sets: 3, reps: 12 },
+                    { name: 'Face Pull en Polea Alta', sets: 3, reps: 15 },
+                    { name: 'Extensión de Tríceps en Polea', sets: 3, reps: 15 }
+                ]
+            },
+            {
+                name: 'Miércoles',
+                label: 'Cardio',
+                exercises: [
+                    { name: 'Cinta (Método CACO)', sets: 1, reps: 35 }
+                ]
+            },
+            {
+                name: 'Jueves',
+                label: 'PIERNA Y CORE',
+                exercises: [
+                    { name: 'Calentamiento: Bloque 2 (Flexores, Dead Bugs, Puente)', sets: 1, reps: 1 },
+                    { name: 'Curl de Isquiotibiales', sets: 3, reps: 12 },
+                    { name: 'Hip Thrust o Multipower', sets: 3, reps: 12 },
+                    { name: 'Prensa de Piernas (Pies altos)', sets: 3, reps: 12 },
+                    { name: 'Extensión de Cadera Polea Baja', sets: 3, reps: 15 },
+                    { name: 'Pallof Press en Polea (por lado)', sets: 3, reps: 10 }
+                ]
+            },
+            {
+                name: 'Viernes',
+                label: 'Descanso',
+                exercises: []
+            },
+            {
+                name: 'Sábado',
+                label: 'FULL BODY CORRECTIVO',
+                exercises: [
+                    { name: 'Calentamiento Express (Blq 1 y 2)', sets: 1, reps: 1 },
+                    { name: 'Remo en Polea Baja (Triángulo)', sets: 3, reps: 12 },
+                    { name: 'Pájaros en Máquina (Peck-Deck)', sets: 3, reps: 15 },
+                    { name: 'Prensa de Piernas (Freno lento)', sets: 3, reps: 12 },
+                    { name: 'Curl de Bíceps Polea Baja', sets: 3, reps: 12 },
+                    { name: 'Crunch Abdominal Polea Alta', sets: 3, reps: 15 }
+                ]
+            },
+            {
+                name: 'Domingo',
+                label: 'Cardio',
+                exercises: [
+                    { name: 'Cinta (Método CACO)', sets: 1, reps: 35 }
+                ]
+            }
+        ],
+    },
 ];
 
 const ROUTINES_KEY = 'fitness_routines';
@@ -278,9 +350,14 @@ export function getTodayRoutineExercises(dayOfWeek) {
     if (!routine) return null;
 
     const daysCount = routine.days.length;
-    if (dayOfWeek === 0) return { day: null, exercises: [], isRest: true };
-
-    const dayIndex = (dayOfWeek - 1) % daysCount;
+    
+    let dayIndex;
+    if (daysCount === 7) {
+        dayIndex = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+    } else {
+        if (dayOfWeek === 0) return { day: null, exercises: [], isRest: true };
+        dayIndex = (dayOfWeek - 1) % daysCount;
+    }
     const day = routine.days[dayIndex];
 
     return {
