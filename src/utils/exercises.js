@@ -579,6 +579,289 @@ export const EXERCISE_DATABASE = [
         ],
         videoId: 'ASdvN_XEl_c',
     },
+    // ─── POSTURAL / CALENTAMIENTO (NICOLÁS) ───────────────
+    {
+        id: 'calentamiento-bloque-1',
+        name: 'Calentamiento: Bloque 1 (Pectoral, Chin Tucks, Wall Angels)',
+        muscles: ['chest', 'back', 'shoulders'],
+        primaryMuscle: 'fullbody',
+        equipment: 'Ninguno / Pared',
+        difficulty: 'Principiante',
+        description: 'Fase de preparación enfocada en la movilidad de la cintura escapular y corrección del Síndrome Cruzado Superior. Incluye estiramiento de pectoral y cuello, seguido de activación de retractores (Wall Angels y Chin Tucks).',
+        tips: ['Realiza cada estiramiento 30-45 seg', 'Para Chin Tucks, desliza la cabeza hacia atrás sin levantar la barbilla', 'En Wall Angels, mantén la zona lumbar tocando la pared']
+    },
+    {
+        id: 'calentamiento-bloque-2',
+        name: 'Calentamiento: Bloque 2 (Flexores, Dead Bugs, Puente)',
+        muscles: ['legs', 'core', 'glutes'],
+        primaryMuscle: 'fullbody',
+        equipment: 'Suelo',
+        difficulty: 'Principiante',
+        description: 'Fase de preparación enfocada en la cadera y corrección del Síndrome Cruzado Inferior. Incluye estiramiento de psoas y erectores, seguido de activación del core (Dead Bugs) y glúteos.',
+        tips: ['Alarga el psoas sin arquear la lumbar', 'En Dead Bugs, aplasta la zona lumbar contra el suelo en todo momento', 'Para el puente, aprieta los glúteos sin usar la espalda baja']
+    },
+    {
+        id: 'calentamiento-express',
+        name: 'Calentamiento Express (Blq 1 y 2)',
+        muscles: ['fullbody'],
+        primaryMuscle: 'fullbody',
+        equipment: 'Suelo / Pared',
+        difficulty: 'Principiante',
+        description: 'Versión abreviada de los bloques correctivos 1 y 2. Realiza una sola serie de cada ejercicio de liberación y activación para preparar todo el cuerpo.',
+        tips: ['No te saltes los descansos y respira profundo', 'Concéntrate en la activación de glúteo y retracciones escapulares']
+    },
+    {
+        id: 'rutina-postural-completa',
+        name: 'Rutina postural completa (Bloques 1 y 2)',
+        muscles: ['fullbody'],
+        primaryMuscle: 'fullbody',
+        equipment: 'Suelo / Pared / Puerta',
+        difficulty: 'Principiante',
+        description: 'Sesión integral para combatir el Síndrome Cruzado Superior e Inferior. Ideal para el descanso activo. Combina liberación de pectorales y flexores de cadera con activación de retractores, core y glúteos.',
+        tips: ['Tómate tu tiempo, realiza 3 series por ejercicio', 'Mantén activo el "hilo de la coronilla" y la "cremallera frontal"']
+    },
+    // ─── EJERCICIOS INDIVIDUALES POSTURALES ───────────────
+    {
+        id: 'pectoral-puerta',
+        name: 'Pectoral Mayor y Menor (En puerta)',
+        muscles: ['chest', 'shoulders'],
+        primaryMuscle: 'chest',
+        equipment: 'Marco de puerta',
+        difficulty: 'Principiante',
+        description: 'Un estiramiento de liberación clave en el Bloque 1. Al tener los pectorales acortados, estos tiran de la escápula hacia adelante. Este estiramiento en el marco de una puerta devuelve la movilidad torácica.',
+        tips: ['Mantén la espalda recta y saca pecho', 'Siente el estiramiento en el pecho y hombro anterior, pero no dolor muscular agudo', 'Sostén 30-45 segundos por lado']
+    },
+    {
+        id: 'trapecio-superior',
+        name: 'Trapecio Superior y Elevador',
+        muscles: ['back', 'shoulders'],
+        primaryMuscle: 'back',
+        equipment: 'Ninguno',
+        difficulty: 'Principiante',
+        description: 'Estiramiento para los músculos hiperactivos del cuello. Coloca la mano detrás de la espalda, inclinando la cabeza al lado contrario y ligeramente hacia abajo.',
+        tips: ['No mires hacia arriba', 'Aplica una presión suave con la mano sobre la cabeza', 'Sostén 30 segundos por lado']
+    },
+    {
+        id: 'chin-tucks',
+        name: 'Retracciones Cervicales (Chin Tucks)',
+        muscles: ['back'],
+        primaryMuscle: 'back',
+        equipment: 'Ninguno',
+        difficulty: 'Principiante',
+        description: 'Ejercicio de activación de flexores profundos cervicales. Imagina que tu cabeza descansa sobre rieles y empújala hacia atrás como para hacer "papada".',
+        tips: ['No mires ni arriba ni abajo', 'Mantén la tensión unos 3-5 segundos por repetición', 'Enfócate en alargar la nuca']
+    },
+    {
+        id: 'wall-angels',
+        name: 'Deslizamientos en Pared (Wall Angels)',
+        muscles: ['back', 'shoulders'],
+        primaryMuscle: 'back',
+        equipment: 'Pared',
+        difficulty: 'Intermedio',
+        description: 'Activación del trapecio inferior y romboides. Apoya espalda y cabeza en la pared; eleva los brazos deslizándolos por la pared sin separar la zona lumbar.',
+        tips: ['Asegura tu zona lumbar pegada a la pared', 'No encojas los hombros hacia las orejas', 'Siente el trabajo en la zona media y baja de la espalda']
+    },
+    {
+        id: 'flexores-cadera',
+        name: 'Flexores de Cadera (Caballero)',
+        muscles: ['legs', 'core'],
+        primaryMuscle: 'legs',
+        equipment: 'Suelo',
+        difficulty: 'Principiante',
+        description: 'Estiramiento del psoas ilíaco fundamental para revertir la inclinación pélvica anterior. Adopta la postura del caballero e inclínate sutilmente hacia adelante manteniendo el tronco recto.',
+        tips: ['Aprieta el glúteo de la pierna atrasada', 'No arquees la espalda baja', 'Sostén 30-45 segundos por lado']
+    },
+    {
+        id: 'childs-pose',
+        name: "Posición del Niño (Child's Pose)",
+        muscles: ['back', 'core'],
+        primaryMuscle: 'back',
+        equipment: 'Suelo',
+        difficulty: 'Principiante',
+        description: 'Relajación y estiramiento de los erectores espinales lumbares tensos. Con las rodillas en el suelo, siéntate sobre los talones y extiende los brazos hacia adelante.',
+        tips: ['Usa respiración diafragmática (lleva aire al abdomen/espalda baja)', 'Intenta alargar la espalda con cada espiración', 'Mantén la postura unos 45 segundos']
+    },
+    {
+        id: 'dead-bugs',
+        name: 'Insecto Muerto (Dead Bugs)',
+        muscles: ['core'],
+        primaryMuscle: 'core',
+        equipment: 'Suelo',
+        difficulty: 'Intermedio',
+        description: 'Activación brutal del transverso abdominal. Acostado boca arriba, extiende pierna y brazo contrario mientras mantienes la tensión focalizada.',
+        tips: ['¡Crucial! Aplasta tu zona lumbar contra el suelo siempre', 'Si la espalda se arquea, no bajes tanto las piernas', 'Hazlo muy lento y controlado']
+    },
+    {
+        id: 'glute-bridge-retroversion',
+        name: 'Puente de Glúteo (con Retroversión)',
+        muscles: ['glutes', 'legs'],
+        primaryMuscle: 'glutes',
+        equipment: 'Suelo',
+        difficulty: 'Principiante',
+        description: 'Elevación de pelvis iniciando obligatoriamente con una inclinación pélvica posterior (aplastando la lumbar al suelo) para incidir solo en el glúteo mayor.',
+        tips: ['Inicia con la pelvis en retroversión', 'Empuja contrayendo glúteos, nunca la musculatura lumbar', 'Sostén la contracción 2 segundos arriba']
+    },
+    // ─── GIMNASIO (NICOLÁS) ───────────────────────────────
+    {
+        id: 'dominadas-asistidas',
+        name: 'Dominadas Asistidas (Saca pecho)',
+        muscles: ['back', 'biceps'],
+        primaryMuscle: 'back',
+        equipment: 'Máquina Asistida',
+        difficulty: 'Principiante',
+        description: 'Tracción en máquina asistida. Trabaja la espalda enfatizando la amplitud.',
+        tips: ['Saca pecho en la parte superior', 'Tira de los codos hacia el suelo, no subas los hombros', 'Controla la fase excéntrica']
+    },
+    {
+        id: 'remo-maquina-pecho',
+        name: 'Remo en Máquina (Pecho apoyado)',
+        muscles: ['back', 'biceps'],
+        primaryMuscle: 'back',
+        equipment: 'Máquina de remo',
+        difficulty: 'Intermedio',
+        description: 'Tracción horizontal enfocada en la espalda media sin estresar la lumbar al estar apoyado.',
+        tips: ['Mantén el pecho firmemente pegado al cojín', 'Inicia el movimiento juntando las escápulas', 'Codos pegados al torso']
+    },
+    {
+        id: 'cruces-polea-alta-baja',
+        name: 'Cruces en Polea (Alta a Baja)',
+        muscles: ['chest'],
+        primaryMuscle: 'chest',
+        equipment: 'Poleas cruzadas',
+        difficulty: 'Intermedio',
+        description: 'Aislamiento para el pectoral inferior. Tirar desde las poleas altas y cruzar delante de la cadera.',
+        tips: ['Saca pecho exageradamente', 'Al abrir, siente estiramiento sin que los hombros adelanten al pecho', 'Junta las manos abajo y aprieta 1 segundo']
+    },
+    {
+        id: 'face-pull-alta',
+        name: 'Face Pull en Polea Alta',
+        muscles: ['shoulders', 'back'],
+        primaryMuscle: 'shoulders',
+        equipment: 'Polea (Cuerda)',
+        difficulty: 'Intermedio',
+        description: 'Trabajo clave para el hombro posterior y corrección postural. Tira con los codos altos y la cuerda hacia la cara.',
+        tips: ['Los puños deben acabar más atrás que los codos', 'Siente la contracción en la espalda alta', 'Control y cadencia lenta']
+    },
+    {
+        id: 'extension-triceps-polea',
+        name: 'Extensión de Tríceps en Polea',
+        muscles: ['triceps'],
+        primaryMuscle: 'triceps',
+        equipment: 'Polea (Cuerda)',
+        difficulty: 'Principiante',
+        description: 'Aislamiento de las tres cabezas del tríceps, empujando hacia abajo la cuerda y separándola.',
+        tips: ['Codos bloqueados pegados a las costillas en todo momento', 'Hombros atrás y abajo', 'Abre la cuerda al llegar abajo']
+    },
+    {
+        id: 'cinta-caco',
+        name: 'Cinta (Método CACO)',
+        muscles: ['legs', 'cardio'],
+        primaryMuscle: 'fullbody',
+        equipment: 'Cinta',
+        difficulty: 'Principiante',
+        description: 'Entrenamiento CACO (Caminar y Correr). Método de cardio moderado/interválico ideal para oxidación de grasa conservando musculatura.',
+        tips: ['Controla tu postura: "hilo en la coronilla"', 'Alterna tramos caminando rápido con trote muy suave', 'Mira siempre al frente, no abajo']
+    },
+    {
+        id: 'curl-isquios',
+        name: 'Curl de Isquiotibiales',
+        muscles: ['legs'],
+        primaryMuscle: 'legs',
+        equipment: 'Máquina Sentado',
+        difficulty: 'Principiante',
+        description: 'Isla los flexores de la rodilla. En la versión sentado se estira más el isquiotibial en origen, potenciando la hipertrofia.',
+        tips: ['Pega bien la zona lumbar al respaldo', 'Solo flexiona las rodillas, no levantes el glúteo', 'Aguanta arriba 1 segundo']
+    },
+    {
+        id: 'hip-thrust-nicolas',
+        name: 'Hip Thrust o Multipower',
+        muscles: ['glutes', 'legs'],
+        primaryMuscle: 'glutes',
+        equipment: 'Banco y Barra/Máquina',
+        difficulty: 'Intermedio',
+        description: 'El mejor promotor de masa muscular en el glúteo. Empuja la barra o máquina levantando la cadera.',
+        tips: ['Empuja siempre desde los talones', 'Nunca levantes arqueando la lumbar, contrae el glúteo', 'Mantén la mirada al frente, mentón bajado']
+    },
+    {
+        id: 'prensa-pies-altos',
+        name: 'Prensa de Piernas (Pies altos)',
+        muscles: ['legs', 'glutes'],
+        primaryMuscle: 'legs',
+        equipment: 'Prensa',
+        difficulty: 'Intermedio',
+        description: 'Colocar los pies más altos en la plataforma redirige la tensión principal hacia glúteos e isquiotibiales reduciendo presión sobre la rodilla.',
+        tips: ['Baja hasta que consigas el máximo ángulo sin despegar la lumbar o el sacro del asiento', 'Empuja lento, no des rebotes']
+    },
+    {
+        id: 'extension-cadera-polea',
+        name: 'Extensión de Cadera Polea Baja',
+        muscles: ['glutes'],
+        primaryMuscle: 'glutes',
+        equipment: 'Polea Baja (Tobillera)',
+        difficulty: 'Intermedio',
+        description: 'Trabajo unilateral aislando el glúteo mayor usando la tensión constante de la polea.',
+        tips: ['Mantén el torso recto todo el tiempo', 'Rango muy corto: tira apretando glúteo', 'Si arqueas la lumbar estás usando compensación']
+    },
+    {
+        id: 'pallof-press',
+        name: 'Pallof Press en Polea (por lado)',
+        muscles: ['core'],
+        primaryMuscle: 'core',
+        equipment: 'Polea Alta/Baja',
+        difficulty: 'Intermedio',
+        description: 'El rey del trabajo anti-rotacional. Fuerte activación del core combatiendo la resistencia asimétrica de la polea.',
+        tips: ['Glúteos apretados, "cremallera" abdominal activada', 'Presiona el asa al frente y sostén firme 2 segundos', 'No permitas que la polea te gire los hombros']
+    },
+    {
+        id: 'remo-polea-triangulo',
+        name: 'Remo en Polea Baja (Triángulo)',
+        muscles: ['back', 'biceps'],
+        primaryMuscle: 'back',
+        equipment: 'Polea Baja',
+        difficulty: 'Principiante',
+        description: 'Remo tradicional Gironda para dar grosor a la espalda.',
+        tips: ['Siéntate completamente erguido', 'No te inclines hacia atrás para usar inercia', 'Hombros abajo y activamente hacia atrás']
+    },
+    {
+        id: 'pajaros-peckdeck',
+        name: 'Pájaros en Máquina (Peck-Deck)',
+        muscles: ['shoulders', 'back'],
+        primaryMuscle: 'shoulders',
+        equipment: 'Máquina Inversa',
+        difficulty: 'Principiante',
+        description: 'Ejercicio de aislamiento para el hombro posterior usando la máquina contractora invertida.',
+        tips: ['Imagina que empujas el peso con los codos hacia las paredes', 'Mantén una posición fija en el pecho', 'Haz pausas de 1 s en la máxima apertura']
+    },
+    {
+        id: 'prensa-freno-lento',
+        name: 'Prensa de Piernas (Freno lento)',
+        muscles: ['legs', 'glutes'],
+        primaryMuscle: 'legs',
+        equipment: 'Prensa',
+        difficulty: 'Intermedio',
+        description: 'Variación de la prensa donde el énfasis absoluto se hace en el tiempo bajo tensión de la bajada (fase excéntrica).',
+        tips: ['Pies centrados en la placa', 'Cuenta EXACTAMENTE 3 segundos en cada repetición de bajada', 'Movimiento extremadamente fluido']
+    },
+    {
+        id: 'curl-biceps-polea-baja',
+        name: 'Curl de Bíceps Polea Baja',
+        muscles: ['biceps', 'forearms'],
+        primaryMuscle: 'biceps',
+        equipment: 'Polea Baja',
+        difficulty: 'Principiante',
+        description: 'Curl continuo en polea que asegura que el bíceps esté bajo estrés tanto subiendo como bajando.',
+        tips: ['Misma regla que barra: codos fijos a las costillas', 'Evita inclinarte y redondear los hombros', 'Exprimir el bíceps en la flexión completa']
+    },
+    {
+        id: 'crunch-polea-alta',
+        name: 'Crunch Abdominal Polea Alta',
+        muscles: ['core'],
+        primaryMuscle: 'core',
+        equipment: 'Polea Alta (Cuerda)',
+        difficulty: 'Intermedio',
+        description: 'Trabajo para la pared abdominal aplicando tracción resistida constante ideal para hipertrofia del "six pack".',
+        tips: ['De rodillas, de espaldas al peso', 'Usa las inserciones del abdomen para flexionar (enrollar) la columna', 'Nunca tires bajando los brazos o cadera']
+    }
 ];
 
 // ─── Search & Filter ────────────────────────────────────
