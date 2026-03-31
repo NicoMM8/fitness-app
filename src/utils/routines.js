@@ -219,76 +219,162 @@ export const DEFAULT_ROUTINES = [
     },
     {
         id: 'nicolas_routine',
-        name: 'Plan Entrenamiento Nicolás',
-        description: 'Torso, Pierna+Core, Full Body Correctivo',
+        name: 'BLOQUE 0: Adaptación',
+        description: 'Semana 1-4. Objetivo: ganar masa muscular + pérdida de grasa visceral',
         icon: '👑',
         color: 'purple',
-        tags: ['3 Días + Cardio', 'Recomposición', 'Postural'],
+        tags: ['5 Días', 'Adaptación', 'Recomposición'],
         days: [
             {
                 name: 'Lunes',
-                label: 'Descanso Activo',
+                label: 'DÍA 1: PUSH (pecho, hombro, tríceps)',
                 exercises: [
-                    { name: 'Rutina postural completa (Bloques 1 y 2)', sets: 1, reps: 1 }
+                    { name: 'PRESS BANCA (barra o máq)', sets: 3, reps: '8-10', descanso: '90 seg', tempo: '3-1-2-0', indicaciones: '- Escápulas juntas y saca pecho\n- Baja la barra al pecho controlando\n- Pies empujan el suelo' },
+                    { name: 'PRESS INCLINADO MANCUERNA', sets: 2, reps: '10-12', descanso: '90 seg', tempo: '3-1-2-0', indicaciones: '- Baja lento, controla recorrido\n- Sube juntando ligeramente' },
+                    { name: 'CRUCES EN POLEA', sets: 2, reps: '12-15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Polea al hombro, brazos semi flexionados\n- JUNTAR CODOS, NO MANOS\n- Menos peso, más conexión' },
+                    { name: 'PRESS MILITAR', sets: 2, reps: '10', descanso: '90 seg', tempo: '2-1-2-0', indicaciones: '- Core y glúteo activos\n- No arquees la espalda\n- Ligerísima flexión de rodillas' },
+                    { name: 'ELEVACIONES LATERALES', sets: 2, reps: '12-15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Controlado. Sube con los codos\n- Como si sirvieras agua' },
+                    { name: 'TRÍCEPS EN POLEA', sets: 2, reps: '12', descanso: '30 seg', tempo: '2-1-2-1', indicaciones: '- Usar barra corta, es más estable\n- En la pausa final, sube un poco más moviendo codos' },
+                    { name: 'CORE Y CARDIO (PUSH)', sets: 1, reps: '1', indicaciones: 'CORE:\n- Pallof press: 2x10/lado\n- Plancha: 2x30s\n- Máquina abs: 2x12\nCARDIO:\n- ESCALERA 10 min, Nivel 4-5 (120-140 lpm)' }
                 ]
             },
             {
                 name: 'Martes',
-                label: 'TORSO (Énfasis Tracciones)',
+                label: 'DÍA 2: PIERNA (base cuádriceps)',
                 exercises: [
-                    { name: 'Calentamiento: Bloque 1 (Pectoral, Chin Tucks, Wall Angels)', sets: 1, reps: 1 },
-                    { name: 'Dominadas Asistidas (Saca pecho)', sets: 3, reps: 10 },
-                    { name: 'Remo en Máquina (Pecho apoyado)', sets: 3, reps: 12 },
-                    { name: 'Cruces en Polea (Alta a Baja)', sets: 3, reps: 12 },
-                    { name: 'Face Pull en Polea Alta', sets: 3, reps: 15 },
-                    { name: 'Extensión de Tríceps en Polea', sets: 3, reps: 15 }
+                    { name: 'SENTADILLA EN MULTIPOWER', sets: 3, reps: '8-10', descanso: '90 seg', tempo: '3-1-2-0', indicaciones: '- Calienta hombros/muñecas antes\n- Empuja con talones, no los levantes\n- No bloquees rodillas, saca pecho' },
+                    { name: 'PRENSA INCLINADA', sets: 2, reps: '10', descanso: '60 seg', tempo: '3-1-2-0', indicaciones: '- No bloquees rodillas. Exhala al subir\n- Pies en la mitad, abiertos para profundidad' },
+                    { name: 'EXTENSIÓN CUÁDRICEPS', sets: 2, reps: '12-15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Controla el movimiento\n- Aprieta en la máxima extensión' },
+                    { name: 'PESO MUERTO RUMANO', sets: 2, reps: '10', descanso: '90 seg', tempo: '3-1-2-0', indicaciones: '- Cadera atrás, lumbar neutra\n- Manos rozan las piernas\n- Empuja el suelo con talones' },
+                    { name: 'GEMELOS', sets: 2, reps: '12-15', descanso: '45 seg', tempo: '2-1-2-1', indicaciones: '- Controla el movimiento y la bajada' },
+                    { name: 'CORE Y CARDIO (PIERNA)', sets: 1, reps: '1', indicaciones: 'CORE:\n- Plancha lateral: 2x30s\n- Elevación piernas al suelo lenta: 2x10\nCARDIO:\n- BICI 10 min: esfuerzos de 30s variando res' }
+                ]
+            },
+            {
+                name: 'Miércoles',
+                label: 'Descanso',
+                exercises: []
+            },
+            {
+                name: 'Jueves',
+                label: 'DÍA 3: PULL (espalda, bíceps)',
+                exercises: [
+                    { name: 'JALÓN AL PECHO (Neutro)', sets: 3, reps: '8-10', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Lleva la barra al pecho\n- Baja los codos al costado' },
+                    { name: 'REMO POLEA ESTRECHO', sets: 2, reps: '10', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Junta escápulas en la contracción' },
+                    { name: 'REMO MANCUERNA', sets: 2, reps: '10', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Solo se mueve dorsal/brazo, no cadera ni torso\n- Espalda recta, cabeza neutra' },
+                    { name: 'FACE PULL EN POLEA', sets: 2, reps: '12-15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Lleva la cuerda a la cara\n- Codos altos. Aprieta máxima contracción' },
+                    { name: 'CURL BÍCEPS BARRA Z', sets: 2, reps: '10-12', descanso: '90 seg', tempo: '2-1-2-1', indicaciones: '- Hazlo sentado en banquito\n- No balancees, fija los codos' },
+                    { name: 'CORE Y CARDIO (PULL)', sets: 1, reps: '1', indicaciones: 'CORE:\n- Máquina abs: 2x10\n- Pallof press: 2x10/lado\nCARDIO:\n- ESCALERA 15 min, Nivel 4-5 (120-140 lpm)' }
+                ]
+            },
+            {
+                name: 'Viernes',
+                label: 'DÍA 4: PIERNA (glúteo y femoral)',
+                exercises: [
+                    { name: 'PESO MUERTO MULTI', sets: 3, reps: '6-8', descanso: '90 seg', tempo: '2-1-2-0', indicaciones: '- Mitad del pie bajo la barra\n- Cadera atrás y baja hasta mitad de tibia\n- Empuja suelo con talones' },
+                    { name: 'HIP THRUST MÁQUINA', sets: 2, reps: '10', descanso: '90 seg', tempo: '2-2-2-1', indicaciones: '- Barbilla pegada al pecho\n- Retroversión pélvica\n- Aprieta 3 seg arriba' },
+                    { name: 'CURL FEMORAL ACOSTADO', sets: 2, reps: '12', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Colchón muy bajo\n- Fuerza desde talones activando el pie' },
+                    { name: 'ABDUCCIÓN (abrir)', sets: 2, reps: '15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Abre fuerte, aprieta 1 seg y controla la vuelta' },
+                    { name: 'CORE Y CARDIO (PIERNA 2)', sets: 1, reps: '1', indicaciones: 'CORE:\n- Plancha lateral: 2x30s\n- Elevación piernas lenta: 2x10\nCARDIO:\n- BICI 10 min: esfuerzos de 30s variando res' }
+                ]
+            },
+            {
+                name: 'Sábado',
+                label: 'DÍA 5: MOVILIDAD Y PLIOMETRÍA',
+                exercises: [
+                    { name: 'SALTOS EN EL SITIO', sets: 3, reps: '6', descanso: '90 seg', indicaciones: '- Verticales, suaves, aterriza controlado\n- Rodillas ligeramente hacia afuera' },
+                    { name: 'SENTADILLA CON SALTO', sets: 3, reps: '5', descanso: '60 seg', indicaciones: '- Baja en sentadilla lento, salta explosivo\n- Aterriza amortiguando con talones' },
+                    { name: 'SALTOS AL CAJÓN', sets: 3, reps: '5', descanso: '90 seg', indicaciones: '- Usar el lado bajo del cajón pegado a pared\n- Aterriza sin hacer ruido en el centro' },
+                    { name: 'STEP-UP AL CAJÓN', sets: 3, reps: '8', descanso: '60 seg', indicaciones: '- Lado alto. Sube explosivo, baja 3 seg\n- Rodilla alineada con pie (8 reps/lado)' },
+                    { name: 'CARDIO LISS', sets: 1, reps: '1', indicaciones: 'Opciones:\n- Caminar en cinta 25 min (variando inclinación)\n- Bici: 15 min\n- Elíptica: 20 min' }
+                ]
+            },
+            {
+                name: 'Domingo',
+                label: 'Descanso Total',
+                exercises: []
+            }
+        ],
+    },
+    {
+        id: 'nicolas_routine_v0',
+        name: 'Rutina Nicolás v0',
+        description: 'El Trabajo Invisible (Hábitos), Movilidad y Tablas de Fuerza',
+        icon: '🧠',
+        color: 'blue',
+        tags: ['Torso/Pierna', 'Hábitos', 'Postura', 'RIR 2'],
+        days: [
+            {
+                name: 'Lunes',
+                label: 'Descanso Activo (Movilidad Completa Casa)',
+                exercises: [
+                    { name: 'Estiramiento Pectoral (Marco puerta)', sets: 3, reps: '30-45 seg', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 1' },
+                    { name: 'Estiramiento Trapecio Superior', sets: 3, reps: '30 seg/lado', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 1. Cabeza a lado contrario' },
+                    { name: 'Retracciones Cervicales (Chin Tucks)', sets: 3, reps: '10', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 1. Sostén papada 3-5s. No mires arriba/abajo.' },
+                    { name: 'Wall Angels (Deslizamiento pared)', sets: 3, reps: '12', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 1. Lumbar y cabeza pegadas, no encojas hombros.' },
+                    { name: 'Estiramiento Flexores Cadera (Caballero)', sets: 3, reps: '30-45 seg', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 2. No arquees lumbar.' },
+                    { name: 'Posición del Niño (Childs Pose)', sets: 3, reps: '45 seg', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 2. Respira a tu abdomen.' },
+                    { name: 'Insecto Muerto (Dead Bugs)', sets: 3, reps: '10/lado', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 2. Lumbar aplastada al suelo, lento.' },
+                    { name: 'Puente de Glúteo', sets: 3, reps: '15', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 2. Retroversión pélvica, aprieta 2s arriba' }
+                ]
+            },
+            {
+                name: 'Martes',
+                label: 'Torso (Énfasis Tracciones)',
+                exercises: [
+                    { name: 'Calentamiento: Bloque 1', sets: 1, reps: '1', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 1: Pectoral, Trapecio, Chin Tucks y Wall Angels' },
+                    { name: 'Dominadas Asistidas (Máquina)', sets: 3, reps: '8-10', descanso: 'RIR 2', tempo: '2-1-2-1', indicaciones: 'Saca pecho arriba. Tira con los codos al suelo.' },
+                    { name: 'Remo en Máquina (Pecho apoyado)', sets: 3, reps: '10-12', descanso: 'RIR 2', tempo: '2-1-2-1', indicaciones: 'Pecho pegado al cojín. Inicia juntando escápulas.' },
+                    { name: 'Cruces Polea (Alta a Baja)', sets: 3, reps: '12-15', descanso: 'RIR 2', tempo: '3-1-2-0', indicaciones: 'Exagera sacar pecho. Junta codos abajo, no manos.' },
+                    { name: 'Face Pull Polea Alta (Cuerda)', sets: 3, reps: '12-15', descanso: 'RIR 2', tempo: '2-1-2-1', indicaciones: 'Puños más atrás que codos. Siente la espalda alta.' },
+                    { name: 'Extensión Tríceps Polea (Cuerda)', sets: 3, reps: '12-15', descanso: 'RIR 2', tempo: '2-1-2-0', indicaciones: 'Codos pegados a costillas. Hombros atrás y abajo.' }
                 ]
             },
             {
                 name: 'Miércoles',
                 label: 'Cardio',
                 exercises: [
-                    { name: 'Cinta (Método CACO)', sets: 1, reps: 35 }
+                    { name: 'Cinta (Método CACO)', sets: 1, reps: '35 min', descanso: '-', tempo: '-', indicaciones: 'Min 0-5 caminar. Min 5-20 trote suave. Min 20-25 caminar. Min 25-35 trote suave. Mantén Cremallera frontal' }
                 ]
             },
             {
                 name: 'Jueves',
-                label: 'PIERNA Y CORE',
+                label: 'Pierna y Core (Cadena Posterior)',
                 exercises: [
-                    { name: 'Calentamiento: Bloque 2 (Flexores, Dead Bugs, Puente)', sets: 1, reps: 1 },
-                    { name: 'Curl de Isquiotibiales', sets: 3, reps: 12 },
-                    { name: 'Hip Thrust o Multipower', sets: 3, reps: 12 },
-                    { name: 'Prensa de Piernas (Pies altos)', sets: 3, reps: 12 },
-                    { name: 'Extensión de Cadera Polea Baja', sets: 3, reps: 15 },
-                    { name: 'Pallof Press en Polea (por lado)', sets: 3, reps: 10 }
+                    { name: 'Calentamiento: Bloque 2', sets: 1, reps: '1', descanso: '-', tempo: '-', indicaciones: 'BLOQUE 2: Flexores, Posición del niño, Dead Bugs y Puente de Glúteo' },
+                    { name: 'Curl de Isquiotibiales (Sentado)', sets: 3, reps: '10-12', descanso: 'RIR 2', tempo: '3-1-2-0', indicaciones: 'Lumbar pegada al respaldo. Fuerza solo de rodilla hacia abajo.' },
+                    { name: 'Hip Thrust (Máquina o Multi)', sets: 3, reps: '10-12', descanso: 'RIR 2', tempo: '2-1-2-2', indicaciones: 'Empuja con talones. Aprieta glúteo 2s arriba. Sin arquear lumbar.' },
+                    { name: 'Prensa Inclinada', sets: 3, reps: '10-12', descanso: 'RIR 2', tempo: '3-1-2-0', indicaciones: 'Pies a media altura/altos. Apoya toda la espalda.' },
+                    { name: 'Extensión Cadera Polea Baja', sets: 3, reps: '12-15', descanso: 'RIR 2', tempo: '2-0-2-1', indicaciones: 'Torso recto. Patada corta apretando el glúteo.' },
+                    { name: 'Dead Bugs (Suelo)', sets: 3, reps: '10/lado', descanso: '-', tempo: 'Lento', indicaciones: 'Lumbar PEGADA al suelo en todo momento. Movimiento controlado.' }
                 ]
             },
             {
                 name: 'Viernes',
-                label: 'Descanso',
+                label: 'Descanso Total',
                 exercises: []
             },
             {
                 name: 'Sábado',
-                label: 'FULL BODY CORRECTIVO',
+                label: 'Full Body Correctivo',
                 exercises: [
-                    { name: 'Calentamiento Express (Blq 1 y 2)', sets: 1, reps: 1 },
-                    { name: 'Remo en Polea Baja (Triángulo)', sets: 3, reps: 12 },
-                    { name: 'Pájaros en Máquina (Peck-Deck)', sets: 3, reps: 15 },
-                    { name: 'Prensa de Piernas (Freno lento)', sets: 3, reps: 12 },
-                    { name: 'Curl de Bíceps Polea Baja', sets: 3, reps: 12 },
-                    { name: 'Crunch Abdominal Polea Alta', sets: 3, reps: 15 }
+                    { name: 'Calentamiento Express', sets: 1, reps: '1', descanso: '-', tempo: '-', indicaciones: '1 serie de CADA ejercicio del Bloque 1 y Bloque 2' },
+                    { name: 'Remo Polea Baja (Agarre estrecho)', sets: 3, reps: '10-12', descanso: 'RIR 2', tempo: '2-1-2-1', indicaciones: 'Siéntate erguido. Hombros abajo y lejos de las orejas.' },
+                    { name: 'Pájaros Máquina (Peck-Deck Inv.)', sets: 3, reps: '12-15', descanso: 'RIR 2', tempo: '2-0-2-1', indicaciones: 'Empuja el peso con los codos hacia las paredes.' },
+                    { name: 'Prensa Inclinada', sets: 3, reps: '10-12', descanso: 'RIR 2', tempo: '3-1-2-0', indicaciones: 'Pies centrados. Control absoluto en bajada (3 seg).' },
+                    { name: 'Curl Bíceps Polea', sets: 3, reps: '12', descanso: 'RIR 2', tempo: '2-1-2-0', indicaciones: 'Codos fijos al cuerpo, no adelantes hombros al subir.' },
+                    { name: 'Crunch Abdominal Polea Alta', sets: 3, reps: '12-15', descanso: 'RIR 2', tempo: '2-0-2-1', indicaciones: 'Enrolla tu columna con el abdomen, no tires con brazos.' }
                 ]
             },
             {
                 name: 'Domingo',
                 label: 'Cardio',
                 exercises: [
-                    { name: 'Cinta (Método CACO)', sets: 1, reps: 35 }
+                    { name: 'Cinta (Método CACO)', sets: 1, reps: '35 min', descanso: '-', tempo: '-', indicaciones: 'Misma pauta que el Miércoles. Foco en "Hilo en la coronilla" y "Cremallera frontal"' }
                 ]
             }
-        ],
-    },
+        ]
+    }
 ];
 
 const ROUTINES_KEY = 'fitness_routines';

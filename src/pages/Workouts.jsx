@@ -91,6 +91,11 @@ export default function Workouts() {
                     reps: ex.reps,
                     weight: null,
                     icon: '🏋️',
+                    note: [
+                        ex.tempo ? `Tempo: ${ex.tempo}` : '',
+                        ex.descanso ? `Descanso: ${ex.descanso}` : '',
+                        ex.indicaciones ? `\n${ex.indicaciones.trim()}` : ''
+                    ].filter(Boolean).join(' | ').replace(' | \n', '\n'),
                     setDetails,
                     completedSets: Array(ex.sets).fill(false),
                     fromRoutine: true,
