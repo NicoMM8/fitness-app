@@ -5,6 +5,7 @@ import {
     addWorkout,
     deleteWorkout,
     updateWorkout,
+    getLastExerciseStats,
 } from '../utils/storage';
 import { getActiveRoutine, getTodayRoutineExercises } from '../utils/routines';
 import { getExerciseByName } from '../utils/exercises';
@@ -80,22 +81,31 @@ export default function Workouts() {
         routineInfo.exercises.forEach(ex => {
             const exists = workouts.find(w => w.name === ex.name && w.fromRoutine);
             if (!exists) {
-                const setDetails = Array.from({ length: ex.sets }, () => ({
-                    reps: ex.reps,
-                    weight: '',
+                const pastStats = getLastExerciseStats(ex.name, dateKey);
+
+                const setDetails = Array.from({ length: ex.sets }, (_, i) => ({
+                    reps: pastStats?.setDetails?.[i]?.reps ?? pastStats?.reps ?? ex.reps,
+                    weight: pastStats?.setDetails?.[i]?.weight ?? pastStats?.weight ?? '',
                     done: false,
                 }));
+
+                const baseNote = [
+                    ex.tempo ? `Tempo: ${ex.tempo}` : '',
+                    ex.descanso ? `Descanso: ${ex.descanso}` : '',
+                    ex.indicaciones ? `\n${ex.indicaciones.trim()}` : ''
+                ].filter(Boolean).join(' | ').replace(' | \n', '\n');
+
+                const finalNote = pastStats?.note 
+                    ? `${baseNote}\n\n--- Última vez ---\n${pastStats.note}`.trim()
+                    : baseNote;
+
                 addWorkout(dateKey, {
                     name: ex.name,
                     sets: ex.sets,
                     reps: ex.reps,
-                    weight: null,
+                    weight: pastStats?.weight ?? null,
                     icon: '🏋️',
-                    note: [
-                        ex.tempo ? `Tempo: ${ex.tempo}` : '',
-                        ex.descanso ? `Descanso: ${ex.descanso}` : '',
-                        ex.indicaciones ? `\n${ex.indicaciones.trim()}` : ''
-                    ].filter(Boolean).join(' | ').replace(' | \n', '\n'),
+                    note: finalNote,
                     setDetails,
                     completedSets: Array(ex.sets).fill(false),
                     fromRoutine: true,
@@ -107,20 +117,28 @@ export default function Workouts() {
 
     function handleAdd() {
         if (!form.name.trim() || !form.sets) return;
+        const exerciseName = form.name.trim();
         const numSets = parseInt(form.sets) || 1;
         const defaultReps = parseInt(form.reps) || 10;
         const defaultWeight = form.weight ? parseFloat(form.weight) : '';
-        const setDetails = Array.from({ length: numSets }, () => ({
-            reps: defaultReps,
-            weight: defaultWeight,
+        
+        const pastStats = getLastExerciseStats(exerciseName, dateKey);
+
+        const setDetails = Array.from({ length: numSets }, (_, i) => ({
+            reps: form.reps !== '10' ? defaultReps : (pastStats?.setDetails?.[i]?.reps ?? pastStats?.reps ?? defaultReps),
+            weight: form.weight ? defaultWeight : (pastStats?.setDetails?.[i]?.weight ?? pastStats?.weight ?? ''),
             done: false,
         }));
+
+        const finalNote = pastStats?.note ? `--- Última vez ---\n${pastStats.note}` : '';
+
         addWorkout(dateKey, {
-            name: form.name.trim(),
+            name: exerciseName,
             sets: numSets,
             reps: defaultReps,
-            weight: defaultWeight || null,
-            icon: '💪',
+            weight: form.weight ? defaultWeight : (pastStats?.weight ?? null),
+            icon: pastStats?.icon ?? '💪',
+            note: finalNote,
             setDetails,
             completedSets: Array(numSets).fill(false),
             fromRoutine: false,

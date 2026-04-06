@@ -2,10 +2,10 @@ import { useState, useMemo } from 'react';
 import { getWeeklyStats, getDateKey } from '../utils/storage';
 import { getActiveRoutine } from '../utils/routines';
 
-// Actually, I just need to add the import.
 import { Dumbbell, ClipboardList, Repeat, CalendarDays, Star, TrendingUp, Zap, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import DataSettings from '../components/DataSettings';
+import { ResponsiveContainer, ComposedChart, Bar, Line, XAxis, YAxis, Tooltip } from 'recharts';
 
 const SHORT_DAYS = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
 
@@ -39,6 +39,14 @@ export default function Dashboard() {
     }
 
     const motto = WEEK_MOTTOS[Math.abs(weekOffset) % WEEK_MOTTOS.length];
+
+    const chartData = useMemo(() => {
+        return stats.dailyCalories.map((day, i) => ({
+            name: SHORT_DAYS[i],
+            calorias: day.total,
+            volumen: day.volume || 0,
+        }));
+    }, [stats.dailyCalories]);
 
     return (
         <div className="page-container">
@@ -115,29 +123,24 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            {/* Weekly Calories Chart */}
-            <div className="week-chart">
-                <div className="chart-title">Calorías por día</div>
-                <div className="chart-bars">
-                    {stats.dailyCalories.map((day, i) => {
-                        const isToday = day.date === todayKey;
-                        const barHeight = day.total > 0 ? Math.max((day.total / maxCal) * 100, 5) : 0;
-                        return (
-                            <div className="chart-bar-wrap" key={day.date}>
-                                <div className="chart-bar-value">
-                                    {day.total > 0 ? day.total : ''}
-                                </div>
-                                <div
-                                    className={`chart-bar ${isToday ? 'today' : ''} ${day.total === 0 ? 'empty' : ''}`}
-                                    style={{ height: `${barHeight}%` }}
-                                />
-                                <div className={`chart-bar-label ${isToday ? 'today' : ''}`}>
-                                    {SHORT_DAYS[i]}
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
+            {/* Weekly Volume & Calories Chart */}
+            <div className="card" style={{ marginBottom: 22, height: 320, padding: '20px 10px 10px 0' }}>
+                <div className="card-title" style={{ marginLeft: 20, marginBottom: 16 }}>Volumen y Calorías</div>
+                <ResponsiveContainer width="100%" height="85%">
+                    <ComposedChart data={chartData} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
+                        <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--text-tertiary)' }} />
+                        <YAxis yAxisId="left" orientation="left" stroke="none" tick={{ fontSize: 11, fill: 'var(--text-tertiary)' }} />
+                        <YAxis yAxisId="right" orientation="right" stroke="none" tick={{ fontSize: 11, fill: 'var(--text-tertiary)' }} />
+                        <Tooltip 
+                            contentStyle={{ borderRadius: 12, border: '1px solid rgba(255,255,255,0.05)', background: 'var(--card-bg)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
+                            itemStyle={{ fontSize: '0.9rem', fontWeight: 600 }}
+                            labelStyle={{ color: 'var(--text-secondary)', marginBottom: 4 }}
+                            cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                        />
+                        <Bar yAxisId="left" dataKey="calorias" name="Kcal" fill="#ff2d55" radius={[4, 4, 0, 0]} barSize={16} />
+                        <Line yAxisId="right" type="monotone" dataKey="volumen" name="Volumen (kg)" stroke="#ffd60a" strokeWidth={3} dot={{ r: 4, fill: 'var(--card-bg)', strokeWidth: 2 }} activeDot={{ r: 6, fill: '#ffd60a' }} />
+                    </ComposedChart>
+                </ResponsiveContainer>
             </div>
 
             {/* Motivation */}

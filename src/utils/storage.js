@@ -50,6 +50,20 @@ function updateWorkout(dateKey, workoutId, updates) {
   localStorage.setItem(WORKOUTS_KEY, JSON.stringify(all));
 }
 
+function getLastExerciseStats(exerciseName, beforeDateKey) {
+  const all = getAllWorkouts();
+  const sortedDates = Object.keys(all)
+    .filter(d => d < beforeDateKey)
+    .sort((a, b) => b.localeCompare(a));
+  
+  for (const d of sortedDates) {
+    const workouts = all[d];
+    const match = workouts.slice().reverse().find(w => w.name === exerciseName);
+    if (match) return match;
+  }
+  return null;
+}
+
 // ─── Calories ──────────────────────────────────────────
 function getAllCalories() {
   const raw = localStorage.getItem(CALORIES_KEY);
@@ -140,7 +154,27 @@ function getWeeklyStats(referenceDate = new Date()) {
     });
 
     const dayTotal = calories.reduce((sum, c) => sum + (parseInt(c.calories) || 0), 0);
-    dailyCalories.push({ date: dateKey, total: dayTotal });
+    
+    let dayVolume = 0;
+    workouts.forEach(w => {
+      if (w.setDetails && w.setDetails.length > 0) {
+        w.setDetails.forEach(s => {
+          if (s.done) {
+            const reps = parseInt(s.reps) || 0;
+            const weight = parseFloat(s.weight) || 1;
+            dayVolume += (reps * weight);
+          }
+        });
+      } else {
+        const completedSets = w.completedSets || [];
+        const doneCount = completedSets.filter(Boolean).length;
+        const reps = parseInt(w.reps) || 0;
+        const weight = parseFloat(w.weight) || 1;
+        dayVolume += (doneCount * reps * weight);
+      }
+    });
+
+    dailyCalories.push({ date: dateKey, total: dayTotal, volume: Math.round(dayVolume) });
   });
 
   // Most frequent exercise
@@ -234,4 +268,5 @@ export {
   exportAllData,
   importAllData,
   clearAllData,
+  getLastExerciseStats,
 };
