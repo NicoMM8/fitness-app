@@ -169,6 +169,24 @@ export default function Workouts() {
         setWorkouts(getWorkoutsByDate(dateKey));
     }
 
+    function addSetToExercise(workoutId) {
+        const w = workouts.find(w => w.id === workoutId);
+        if (!w) return;
+        const sd = getSetData(w);
+        const lastSet = sd[sd.length - 1] || { reps: 10, weight: '', done: false };
+        sd.push({ reps: lastSet.reps, weight: lastSet.weight, done: false });
+        
+        const newSets = parseInt(w.sets) + 1;
+        const completedSets = sd.map(s => s.done);
+        
+        updateWorkout(dateKey, workoutId, { 
+            sets: newSets,
+            setDetails: sd,
+            completedSets
+        });
+        setWorkouts(getWorkoutsByDate(dateKey));
+    }
+
     function updateWorkoutNote(workoutId, note) {
         updateWorkout(dateKey, workoutId, { note });
         // We do not call setWorkouts here on every keystroke to avoid losing focus if React remounts.
@@ -352,6 +370,12 @@ export default function Workouts() {
                                             </button>
                                         </div>
                                     ))}
+                                    <button 
+                                        onClick={() => addSetToExercise(w.id)}
+                                        style={{ marginTop: '8px', width: '100%', padding: '8px', background: 'var(--card-bg-elevated)', border: '1px dashed var(--border-color)', borderRadius: '8px', color: 'var(--text-secondary)', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '0.9rem' }}
+                                    >
+                                        + Añadir serie
+                                    </button>
                                     <div style={{ marginTop: '12px' }}>
                                         <textarea
                                             className="set-input"

@@ -235,7 +235,10 @@ export const DEFAULT_ROUTINES = [
                     { name: 'PRESS MILITAR', sets: 2, reps: '10', descanso: '90 seg', tempo: '2-1-2-0', indicaciones: '- Core y glúteo activos\n- No arquees la espalda\n- Ligerísima flexión de rodillas' },
                     { name: 'ELEVACIONES LATERALES', sets: 2, reps: '12-15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Controlado. Sube con los codos\n- Como si sirvieras agua' },
                     { name: 'TRÍCEPS EN POLEA', sets: 2, reps: '12', descanso: '30 seg', tempo: '2-1-2-1', indicaciones: '- Usar barra corta, es más estable\n- En la pausa final, sube un poco más moviendo codos' },
-                    { name: 'CORE Y CARDIO (PUSH)', sets: 1, reps: '1', indicaciones: 'CORE:\n- Pallof press: 2x10/lado\n- Plancha: 2x30s\n- Máquina abs: 2x12\nCARDIO:\n- ESCALERA 10 min, Nivel 4-5 (120-140 lpm)' }
+                    { name: 'PALLOF PRESS', sets: 2, reps: '10', descanso: '45 seg', indicaciones: '- 10 reps por lado' },
+                    { name: 'PLANCHA ABDOMINAL', sets: 2, reps: '30', descanso: '45 seg', indicaciones: '- Mantener 30 segundos' },
+                    { name: 'MÁQUINA ABS', sets: 2, reps: '12', descanso: '45 seg', indicaciones: '- Foco en enrollar el core' },
+                    { name: 'ESCALERA (CARDIO)', sets: 1, reps: '10', indicaciones: '- 10 min, Nivel 4-5 (120-140 lpm)' }
                 ]
             },
             {
@@ -247,13 +250,24 @@ export const DEFAULT_ROUTINES = [
                     { name: 'EXTENSIÓN CUÁDRICEPS', sets: 2, reps: '12-15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Controla el movimiento\n- Aprieta en la máxima extensión' },
                     { name: 'PESO MUERTO RUMANO', sets: 2, reps: '10', descanso: '90 seg', tempo: '3-1-2-0', indicaciones: '- Cadera atrás, lumbar neutra\n- Manos rozan las piernas\n- Empuja el suelo con talones' },
                     { name: 'GEMELOS', sets: 2, reps: '12-15', descanso: '45 seg', tempo: '2-1-2-1', indicaciones: '- Controla el movimiento y la bajada' },
-                    { name: 'CORE Y CARDIO (PIERNA)', sets: 1, reps: '1', indicaciones: 'CORE:\n- Plancha lateral: 2x30s\n- Elevación piernas al suelo lenta: 2x10\nCARDIO:\n- BICI 10 min: esfuerzos de 30s variando res' }
+                    { name: 'PLANCHA LATERAL', sets: 2, reps: '30', descanso: '45 seg', indicaciones: '- Mantener 30 segundos por lado' },
+                    { name: 'ELEVACIÓN PIERNAS SUELO', sets: 2, reps: '10', descanso: '45 seg', indicaciones: '- Lenta y controlada' },
+                    { name: 'BICI (CARDIO)', sets: 1, reps: '10', indicaciones: '- 10 min: esfuerzos de 30s variando resistencia' }
                 ]
             },
             {
                 name: 'Miércoles',
-                label: 'Descanso',
-                exercises: []
+                label: 'DÍA 3: POSTURA (Síndromes Cruzados Sup. e Inf.)',
+                exercises: [
+                    { name: 'ESTIRAMIENTO PECTORAL', sets: 3, reps: '30-45s', descanso: '-', indicaciones: 'BLOQUE 1: Síndrome Cruzado Sup.\n- Marco de puerta.\n- Inhibe pectoral mayor/menor.\n- Retrae los hombros redondeados.' },
+                    { name: 'ESTIRAMIENTO TRAPECIO SUP.', sets: 3, reps: '30s/lado', descanso: '-', indicaciones: 'BLOQUE 1:\n- Trabaja la cabeza adelantada.\n- Mano detrás de la espalda.\n- Inclina la cabeza al lado contrario y ligeramente abajo.' },
+                    { name: 'CHIN TUCKS (Retracciones Cervicales)', sets: 3, reps: '10', descanso: 'Completas', tempo: 'Hold 3-5s', indicaciones: 'BLOQUE 1:\n- Haz papada sin mirar arriba ni abajo.\n- Cabeza desliza horizontal en raíles.\n- Elonga y fortalece flexores profundos.' },
+                    { name: 'WALL ANGELS', sets: 3, reps: '12', descanso: '60 seg', tempo: 'Lento', indicaciones: 'BLOQUE 1:\n- Lumbar, espalda alta y cabeza tocan pared.\n- No encojas hombros hacia orejas.\n- Foco en Trapecio Inferior y Medio.' },
+                    { name: 'ESTIRAMIENTO FLEXORES CABALLERO', sets: 3, reps: '30-45s', descanso: '-', indicaciones: 'BLOQUE 2: Síndrome Cruzado Inf. (Inhibición)\n- Posición half-kneeling.\n- Retroversión de cadera (no arquees lumbar).' },
+                    { name: 'POSICIÓN DEL NIÑO (Childs Pose)', sets: 3, reps: '45s', descanso: '-', indicaciones: 'BLOQUE 2:\n- Descomprime carillas lumbares.\n- Respiración diafragmática profunda.' },
+                    { name: 'INSECTO MUERTO (Dead Bugs)', sets: 3, reps: '10/lado', descanso: '60 seg', tempo: 'Muy lento', indicaciones: 'BLOQUE 2: Core Profundo (Activación)\n- Lumbar APLASTADA al suelo siempre.\n- Costillas no suben.\n- Si espalda arquea, no bajes tanto las piernas.' },
+                    { name: 'PUENTE DE GLÚTEO (Glute Bridge)', sets: 3, reps: '15', descanso: '60 seg', tempo: 'Hold 2s', indicaciones: 'BLOQUE 2:\n- Haz retroversión pélvica primero (aplana espalda).\n- Sube estricamente de glúteo, no empujando de lumbar.' }
+                ]
             },
             {
                 name: 'Jueves',
@@ -264,7 +278,9 @@ export const DEFAULT_ROUTINES = [
                     { name: 'REMO MANCUERNA', sets: 2, reps: '10', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Solo se mueve dorsal/brazo, no cadera ni torso\n- Espalda recta, cabeza neutra' },
                     { name: 'FACE PULL EN POLEA', sets: 2, reps: '12-15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Lleva la cuerda a la cara\n- Codos altos. Aprieta máxima contracción' },
                     { name: 'CURL BÍCEPS BARRA Z', sets: 2, reps: '10-12', descanso: '90 seg', tempo: '2-1-2-1', indicaciones: '- Hazlo sentado en banquito\n- No balancees, fija los codos' },
-                    { name: 'CORE Y CARDIO (PULL)', sets: 1, reps: '1', indicaciones: 'CORE:\n- Máquina abs: 2x10\n- Pallof press: 2x10/lado\nCARDIO:\n- ESCALERA 15 min, Nivel 4-5 (120-140 lpm)' }
+                    { name: 'MÁQUINA ABS', sets: 2, reps: '10', descanso: '45 seg', indicaciones: '- Controlar la excéntrica' },
+                    { name: 'PALLOF PRESS', sets: 2, reps: '10', descanso: '45 seg', indicaciones: '- 10 reps por lado' },
+                    { name: 'ESCALERA (CARDIO)', sets: 1, reps: '15', indicaciones: '- 15 min, Nivel 4-5 (120-140 lpm)' }
                 ]
             },
             {
@@ -275,7 +291,9 @@ export const DEFAULT_ROUTINES = [
                     { name: 'HIP THRUST MÁQUINA', sets: 2, reps: '10', descanso: '90 seg', tempo: '2-2-2-1', indicaciones: '- Barbilla pegada al pecho\n- Retroversión pélvica\n- Aprieta 3 seg arriba' },
                     { name: 'CURL FEMORAL ACOSTADO', sets: 2, reps: '12', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Colchón muy bajo\n- Fuerza desde talones activando el pie' },
                     { name: 'ABDUCCIÓN (abrir)', sets: 2, reps: '15', descanso: '60 seg', tempo: '2-1-2-1', indicaciones: '- Abre fuerte, aprieta 1 seg y controla la vuelta' },
-                    { name: 'CORE Y CARDIO (PIERNA 2)', sets: 1, reps: '1', indicaciones: 'CORE:\n- Plancha lateral: 2x30s\n- Elevación piernas lenta: 2x10\nCARDIO:\n- BICI 10 min: esfuerzos de 30s variando res' }
+                    { name: 'PLANCHA LATERAL', sets: 2, reps: '30', descanso: '45 seg', indicaciones: '- Mantener 30 segundos por lado' },
+                    { name: 'ELEVACIÓN PIERNAS LENTA', sets: 2, reps: '10', descanso: '45 seg', indicaciones: '- Fuerte contracción abdominal al retener' },
+                    { name: 'BICI (CARDIO)', sets: 1, reps: '10', indicaciones: '- 10 min: esfuerzos de 30s variando resistencia' }
                 ]
             },
             {
